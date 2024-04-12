@@ -11,9 +11,16 @@ export default function Signup() {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [role, setRole] = React.useState('')
 
   const handleSubmit = async() => {
-    console.log(name, email, password)
+    console.log(name, email, password,role)
+
+    if(!name || !email || !password || !role){
+      console.log('Please fill all the fields')
+      return
+    }
+    console.log(role);
 
     try {
       const response = await fetch('http://localhost:4000/api/signup', {
@@ -24,7 +31,8 @@ export default function Signup() {
         body: JSON.stringify({
           name,
           email,
-          password
+          password,
+          role
         })
       })
       const data = await response.json()
@@ -74,6 +82,22 @@ export default function Signup() {
                 onChange={(e) => setPassword(e.target.value)}
 
               />
+              <select id="role" className="border border-gray-300 rounded-lg p-4 w-full"
+                defaultValue=""  onChange={(e) => setRole(e.target.value)}
+              >
+                <option >
+                  Select your category
+                </option>
+                <option value="12">
+                  K-12
+                </option>
+                <option value="Cse">
+                  Computer Science
+                </option>
+                <option value="Phto_editing">
+                  Photo Editing
+                </option>
+              </select>
 
               <p className="text-center">
                 Already have an account?
