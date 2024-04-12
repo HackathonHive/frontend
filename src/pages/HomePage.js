@@ -13,15 +13,15 @@ export default function HomePage() {
       </div>
 
       
-      <div className='gap-4 w-full col-span-2 h-full shadow-lg mr-5'>
+      <div className='gap-4 w-full col-span-3 h-full shadow-lg mr-5'>
         
         main content
       </div>
 
-      <div className='mr-2 hidden md:block'>
+      {/* <div className='mr-2 hidden md:block'>
 
         search and trending 
-      </div>
+      </div> */}
     </div>
   )
 }

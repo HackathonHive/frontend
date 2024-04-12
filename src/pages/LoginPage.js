@@ -45,7 +45,7 @@ export default function LoginPage() {
       </div>
 
 
-      <div className='gap-4 w-full col-span-2 h-full shadow-lg mr-5'>
+      <div className='gap-4 w-full col-span-3 h-full shadow-lg mr-5'>
 
         <div className=' w-full gap-4 col-span-2 h-full shadow-lg mr-5'>
           <div className=' overflow-y-auto overflow-x-hidden'
@@ -96,10 +96,10 @@ export default function LoginPage() {
         </div>
       </div>
 
-      <div className='mr-2 hidden md:block'>
+      {/* <div className='mr-2 hidden md:block'>
 
         search and trending
-      </div>
+      </div> */}
     </div>
 
   )
