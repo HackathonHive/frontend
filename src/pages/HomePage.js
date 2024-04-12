@@ -1,6 +1,7 @@
 import React from 'react'
 import ProfileCard from '../components/ProfileCard'
 import NavCard from '../components/NavCard';
+import CourseCard from '../components/CourseCard';
 
 export default function HomePage() {
   return (
@@ -15,7 +16,7 @@ export default function HomePage() {
       
       <div className='gap-4 w-full col-span-3 h-full shadow-lg mr-5'>
         
-        main content
+        main Content<CourseCard/>
       </div>
 
       {/* <div className='mr-2 hidden md:block'>
