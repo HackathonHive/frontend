@@ -14,11 +14,15 @@ export default function NavCard() {
             </li>
             <li className='flex items-center space-x-2  text-lg hover:text-blue-500'>
               {/* <ViewColumnsIcon className='h-8 w-8' /> */}
-              <Link to='/yourconfession'>Confession</Link>
+              <Link to='/courses'>
+                Courses
+              </Link>
             </li>
             <li className='flex items-center space-x-2  text-lg hover:text-blue-500'>
               {/* <PlusCircleIcon className='h-8 w-8' /> */}
-              <Link to='/addconfession'>Add</Link>
+              <Link to='/notes'>
+                Notes
+              </Link>
             </li>
           </ul>
 

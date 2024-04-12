@@ -17,6 +17,7 @@ import NavCard from './components/NavCard';
 
 import Header from './components/Header';
 import Notes from './pages/Notes';
+import Quiz from './pages/Quiz';
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
         <Route path="/notes" element={<Notes/>}/>
       
         <Route path="/navcard" element={<NavCard />}/>
+        <Route path="/quiz" element={<Quiz />}/>
 
       </Routes>
     </Router>
