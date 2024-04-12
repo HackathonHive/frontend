@@ -61,8 +61,8 @@ export default function Signup() {
             }}>
 
             <div className="flex justify-center">
-              <img src='./images/signupImage.jpg' alt='confession' className='rounded-lg '
-                width='auto' height='auto'
+              <img src='./images/signupImage.jpg' alt='confession' className='rounded-lg mx-auto'
+                width='40%' height='40%'
               />
             </div>
             <div className="flex flex-col gap-4 p-4">

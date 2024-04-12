@@ -8,15 +8,14 @@ import {
 
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
-
+// <<<<<<< HEAD
 import SignUp from './pages/SignUp';
-
+// =======
 import LoginPage from './pages/LoginPage';
 
 import NavCard from './components/NavCard';
 
 import Header from './components/Header';
-
 function App() {
   return (
     <>
@@ -25,9 +24,8 @@ function App() {
       <Routes>
         <Route path="/"  element={<HomePage />} />
         <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-
+        <Route path="/profile" element={<ProfilePage/>}/>
       
         <Route path="/navcard" element={<NavCard />}/>
 
