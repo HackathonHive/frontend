@@ -7,7 +7,11 @@ import {
 } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
+<<<<<<< HEAD
 import SignUp from './pages/SignUp';
+=======
+import LoginPage from './pages/LoginPage';
+>>>>>>> eef073365934cb70e16b01b8cbd03ac9823b7c98
 
 function App() {
   return (
@@ -18,7 +22,7 @@ function App() {
         <Route path="/SignUp" element={<SignUp />} />
 
 
-
+      <Route path="/login" element={<LoginPage/>}/>
 
 
       </Routes>
