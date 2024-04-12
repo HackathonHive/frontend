@@ -1,5 +1,8 @@
 import React from 'react'
 import ProfileCard from '../components/ProfileCard'
+import {
+  Link
+} from 'react-router-dom';
 export default function LoginPage() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -66,7 +69,7 @@ export default function LoginPage() {
               />
 
               <p className="text-center">Don't have an account?
-                {/* <Link to='/signup' className="text-blue-500"> Sign Up</Link> */}
+                <Link to='/signup' className="text-blue-500"> Sign Up</Link>
               </p>
 
 
