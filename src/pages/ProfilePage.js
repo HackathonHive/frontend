@@ -27,31 +27,48 @@ export default function ProfilePage() {
               <h1 className="text-2xl py-2 font-bold">Ansh Agrawal</h1>
             </div>
             {/* // email address */}
-            <div className="flex flex-col justify-start gap-2 items-start space-1 ml-10">
+            <div className="flex flex-col justify-center gap-2 items-start space-1 ml-10">
               <label className=" justify-start align-baseline font-semibold pt-2">
                 Email
               </label>
 
               <input
                 type="email"
-                className={`border border-gray-300 rounded-lg p-2 w-3/4`}
+                className={`border border-gray-300 rounded-lg p-2`}
                 placeholder="Email Address"
                 defaultValue={"abcdefgtheiif@hmail.com"}
+                style={{ width: "90%" }}
                 disabled
               />
             </div>
 
-            <div className="flex flex-col justify-start gap-2 items-start space-1 ml-10">
+            <div className="flex flex-col mt-2  justify-start gap-2 items-start space-1 ml-10">
               <label className=" justify-start align-baseline font-semibold pt-2">
                 Select your category:
               </label>
 
-              <div className="container mx-auto">
-                <select id="fruits" className="border border-gray-300 rounded-lg p-2 w-3/4">
-                  <option value="apple">Apple</option>
-                  <option value="banana">Banana</option>
-                  <option value="orange">Orange</option>
+              <div className="flex w-full gap-1 ">
+                <select id="fruits" className="border border-gray-300 rounded-lg p-2 w-4/5"
+                  style={{ width: "90%" }} defaultValue=""
+                >
+                  <option >
+                    Select your category
+                  </option>
+                  <option value="12 ">
+                    K-12
+                  </option>
+                  <option value="Computer Science">
+                    Computer Science
+                  </option>
+                  <option value="Photo Editing">
+                    Photo Editing
+                  </option>
                 </select>
+
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">
+                  Save
+                </button>
+
               </div>
             </div>
             {/* // logout button */}
@@ -61,7 +78,7 @@ export default function ProfilePage() {
               </button>
             </div>
 
-            
+
           </div>
         </div>
 
