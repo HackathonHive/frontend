@@ -47,9 +47,9 @@ export default function ProfilePage() {
                 Select your category:
               </label>
 
-              <div className="flex w-full gap-1 ">
+              <div className="flex w-full gap-2" style={{ width: "90%" }}>
                 <select id="fruits" className="border border-gray-300 rounded-lg p-2 w-4/5"
-                  style={{ width: "90%" }} defaultValue=""
+                  style={{ width: "80%" }} defaultValue=""
                 >
                   <option >
                     Select your category
@@ -65,7 +65,7 @@ export default function ProfilePage() {
                   </option>
                 </select>
 
-                <button className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">
+                <button className=" bg-gray-100 border border-gray-300 text-black px-4 py-2 rounded-md mt-2 h-12" style={{ width: "20%", height:"100%" }}>
                   Save
                 </button>
 
