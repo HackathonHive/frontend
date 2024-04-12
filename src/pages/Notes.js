@@ -1,9 +1,21 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 
+import ProfileCard from "../components/ProfileCard";
+import NavCard from "../components/NavCard";
+
 export default function Notes() {
   return (
-    <div className="mx-auto w-4/5 flex-col justify-center align-middle">
+    <>
+      <div
+        className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `}
+        style={{ height: "100%" }}
+      >
+        <div className="hidden md:block gap-4 col-span-1">
+          <ProfileCard />
+          <NavCard />
+        </div>
+    <div className="mx-auto w-full px-24 flex-col justify-center align-middle gap-4 col-span-3 h-full shadow-lg mr-5">
       <div className="w-full mb-8">
         <h3>Type Your Notes : </h3>
         <textarea
@@ -50,5 +62,8 @@ export default function Notes() {
         of Lorem Ipsum
       </div>
     </div>
+
+</div>
+</>
   );
 }
