@@ -1,9 +1,5 @@
 import React from 'react'
-
-import {
-  Link
-} from 'react-router-dom';
-
+import ProfileCard from '../components/ProfileCard'
 export default function LoginPage() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -13,6 +9,8 @@ export default function LoginPage() {
     <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
       <div className='hidden md:block gap-4 col-span-1'>
         profile and nav
+        <ProfileCard />
+        
       </div>
 
       
@@ -40,7 +38,7 @@ export default function LoginPage() {
           />
 
           <p className="text-center">Don't have an account?
-            <Link to='/signup' className="text-blue-500"> Sign Up</Link>
+            {/* <Link to='/signup' className="text-blue-500"> Sign Up</Link> */}
           </p>
 
           
