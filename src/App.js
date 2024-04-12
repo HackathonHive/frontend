@@ -7,11 +7,9 @@ import {
 } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';<<<<<<< HEAD
+import ProfilePage from './pages/ProfilePage';
 import SignUp from './pages/SignUp';
-=======
 import LoginPage from './pages/LoginPage';
->>>>>>> eef073365934cb70e16b01b8cbd03ac9823b7c98
 
 function App() {
   return (
