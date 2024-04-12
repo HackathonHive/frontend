@@ -38,6 +38,7 @@ export default function LoginPage() {
           />
 
           <p className="text-center">Don't have an account?
+            {/* <Link to='/signup' className="text-blue-500"> Sign Up</Link> */}
           </p>
 
           

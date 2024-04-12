@@ -1,5 +1,8 @@
 import React from 'react'
-// import NavCard from '../components/NavCard'
+
+import {
+  Link
+} from 'react-router-dom';
 export default function Signup() {
   return (
     <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
@@ -33,7 +36,10 @@ export default function Signup() {
               />
     
               <p className="text-center">
-                {/* <Link to='/signup' className="text-blue-500"> Sign Up</Link> */}
+                Already have an account?
+                <Link to='/login' className="text-blue-500">
+                  Sign In
+                </Link>
               </p>
     
               
