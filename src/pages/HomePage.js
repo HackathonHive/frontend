@@ -14,9 +14,18 @@ export default function HomePage() {
       </div>
 
       
-      <div className='gap-4 w-full col-span-3 h-full shadow-lg mr-5'>
-        
-        main Content<CourseCard/>
+      <div className='gap-4 w-full col-span-3  shadow-lg mr-5'>
+        <div className=' h-screen overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-2'
+        style={{
+          scrollbarWidth: 'none',
+        }}
+        >
+
+        <CourseCard/>
+        <CourseCard/>
+        <CourseCard/>
+        <CourseCard/>
+        </div>
       </div>
 
       {/* <div className='mr-2 hidden md:block'>
