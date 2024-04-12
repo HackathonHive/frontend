@@ -54,8 +54,8 @@ export default function LoginPage() {
             }}>
 
             <div className="flex justify-center">
-              <img src='./images/LoginImage.jpg' alt='confession' className='rounded-lg '
-                width='auto' height='auto'
+              <img src='./images/LoginImage.jpg' alt='confession' className='rounded-lg mx-auto'
+                width='50%' height='40%'
               />
             </div>
             <div className="flex flex-col gap-4 p-4">
