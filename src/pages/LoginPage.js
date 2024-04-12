@@ -3,6 +3,9 @@ import ProfileCard from '../components/ProfileCard'
 import {
   Link
 } from 'react-router-dom';
+
+import NavCard from '../components/NavCard';
+
 export default function LoginPage() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
@@ -37,6 +40,7 @@ export default function LoginPage() {
       <div className='hidden md:block gap-4 col-span-1'>
         {/* profile and nav */}
         <ProfileCard />
+        <NavCard />
 
       </div>
 

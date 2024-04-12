@@ -1,4 +1,6 @@
 import React from 'react'
+import ProfileCard from '../components/ProfileCard'
+import NavCard from '../components/NavCard';
 
 export default function HomePage() {
   return (
@@ -6,6 +8,8 @@ export default function HomePage() {
     <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
       <div className='hidden md:block gap-4 col-span-1'>
         {/* profile and nav */}
+        <ProfileCard />
+        <NavCard />
       </div>
 
       

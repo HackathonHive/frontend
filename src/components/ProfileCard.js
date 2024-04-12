@@ -13,29 +13,13 @@ export default function ProfileCard() {
 
                     <div className='flex flex-col gap-2 justify-center mt-4'>
 
-                        <button className='bg-blue-500 text-white px-4 py-2 rounded-md'>Login</button>
+                        <Link to='/login' className='bg-blue-500 text-white p-2 rounded-lg'>Login</Link>
 
                     </div>
                 </div>
             </div>
             <div>
-         <div className={`shadow-lg p-4  rounded-lg mt-4`}>
-          <ul className='space-y-3'>
-            <li className='flex items-center space-x-2 text-lg hover:text-blue-500'>
-              {/* <HomeIcon className='h-8 w-8' /> */}
-              <Link to='/'>Home</Link>
-            </li>
-            <li className='flex items-center space-x-2  text-lg hover:text-blue-500'>
-              {/* <ViewColumnsIcon className='h-8 w-8' /> */}
-              <Link to='/yourconfession'>Confession</Link>
-            </li>
-            <li className='flex items-center space-x-2  text-lg hover:text-blue-500'>
-              {/* <PlusCircleIcon className='h-8 w-8' /> */}
-              <Link to='/addconfession'>Add</Link>
-            </li>
-          </ul>
-
-        </div>
+         
     </div>
             
         </div>
