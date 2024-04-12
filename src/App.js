@@ -6,16 +6,14 @@ import {
   // Link
 } from 'react-router-dom';
 
-import HomePage from './users/pages/HomePage';
-import DashBoardPage from './sellers/pages/DashBoardPage'; 
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <>
     <Router>
       <Routes>
-        <Route path="/user/"  element={<HomePage />} />
-        <Route  path="/seller/" element={<DashBoardPage />} />
+        <Route path="/"  element={<HomePage />} />
 
 
 
