@@ -13,16 +13,23 @@ import SignUp from './pages/SignUp';
 
 import LoginPage from './pages/LoginPage';
 
+import NavCard from './components/NavCard';
+
+import Header from './components/Header';
+
 function App() {
   return (
     <>
     <Router>
+      <Header />
       <Routes>
         <Route path="/"  element={<HomePage />} />
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/profile" element={<ProfilePage/>}/>
         <Route path="/signup" element={<SignUp/>}/>
 
+      
+        <Route path="/navcard" element={<NavCard />}/>
 
       </Routes>
     </Router>
