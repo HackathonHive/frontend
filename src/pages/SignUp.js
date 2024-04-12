@@ -1,5 +1,5 @@
 import React from 'react'
-import NavCard from '../components/NavCard'
+// import NavCard from '../components/NavCard'
 export default function Signup() {
   return (
     <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
