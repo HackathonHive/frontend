@@ -5,12 +5,22 @@ import ProfileCard from "../components/ProfileCard";
 import NavCard from "../components/NavCard";
 import { useState } from "react";
 
+import { useNavigate } from "react-router-dom";
 export default function Notes() {
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
 
+    if (!localStorage.getItem('token')) {
+      alert('Please login to save notes');
+      navigate('/login');
+      return;
+    }
+
     if (!note || !title) {
       alert('Please fill in all fields');
+      
+
       return;
     }
 

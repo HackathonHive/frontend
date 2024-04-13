@@ -4,6 +4,7 @@ import { client, builder } from '../api/SanityClient';
 import ProfileCard from '../components/ProfileCard'
 import NavCard from '../components/NavCard';
 import PortableText from 'react-portable-text';
+import { useNavigate } from 'react-router-dom';
 
 export default function CourseDetailPage() {
     const { courseId } = useParams();
@@ -12,8 +13,15 @@ export default function CourseDetailPage() {
     const [activeTab, setActiveTab] = React.useState(1);
     const [question, setQuestion] = React.useState('');
     const [questions, setQuestions] = React.useState([]);
+    const navigate = useNavigate();
 
     const handleSubmitQuestion = async () => {
+
+        if(!localStorage.getItem('token')){
+            alert('Please login to ask a question');
+            return;
+        }
+
         if (!question) {
             alert('Please ask a question');
             return;
@@ -69,6 +77,13 @@ export default function CourseDetailPage() {
                 
 
     const fetchCourseDetail = async () => {
+
+        if(!localStorage.getItem('token')){
+            alert('Please login to view course details');
+            navigate('/login');
+            return;
+        }
+
         const query = `*[_type == "courses" && slug.current == "${courseId}"]{
             title,
             content,
@@ -76,7 +91,7 @@ export default function CourseDetailPage() {
             "notes": notes.asset->url
         }`;
         const course = await client.fetch(query);
-        console.log(course);
+        // console.log(course);
         setCourse(course[0]);
         setLoading(false);
     }
@@ -84,6 +99,8 @@ export default function CourseDetailPage() {
     React.useEffect(() => {
         fetchCourseDetail();
         fetchQuestions();
+
+        // eslint-disable-next-line
     }, [courseId]);
 
 

@@ -4,11 +4,21 @@ import ProfileCard from "../components/ProfileCard";
 import NavCard from "../components/NavCard";
 
 import { useState, useEffect } from 'react';
+
+import { useNavigate } from "react-router-dom";
 export default function ProfilePage() {
 
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
   const fetchUserDetails = async () => {
+
+    if (!localStorage.getItem('token')) {
+      alert('Please login to view profile');
+      navigate('/login');
+      return;
+    }
+
     try {
 
       const res = await fetch('http://localhost:4000/api/userdetails', {
@@ -30,7 +40,7 @@ export default function ProfilePage() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    window.location.reload();
+    window.location.href = '/login';
   }
 
   useEffect(() => {
@@ -98,7 +108,7 @@ export default function ProfilePage() {
           </div>
           {/* // logout button */}
           <div className="flex justify-center mt-4">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+            <button onClick={logout} className="bg-blue-500 text-white px-4 py-2 rounded-md">
               Logout
             </button>
           </div>
