@@ -5,9 +5,11 @@ import CourseCard from '../components/CourseCard';
 import { client, builder } from '../api/SanityClient';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Loadar from '../components/Loadar';
 export default function HomePage() {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   const fetchCourses = async () => {
     if (!localStorage.getItem('token')) {
@@ -18,6 +20,7 @@ export default function HomePage() {
     const query = '*[_type == "courses"]';
     const courses = await client.fetch(query);
     setCourses(courses);
+    setLoading(false);
     // console.log(courses);
   };
 
@@ -36,17 +39,22 @@ export default function HomePage() {
 
 
       <div className='gap-4 w-full col-span-3  mb-5 my-4 shadow-lg mr-5'>
-        <div className='mb-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-4'
-          style={{
-            scrollbarWidth: 'none',
-            height: '80vh'
-          }}
-        >
 
-          {courses.map((course) => (
-            <CourseCard key={course._id} course={course} />
-          ))}
-        </div>
+        {
+          loading ? <Loadar /> :
+            <div className='mb-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-4'
+              style={{
+                scrollbarWidth: 'none',
+                height: '80vh'
+              }}
+            >
+
+              {courses.map((course) => (
+                <CourseCard key={course._id} course={course} />
+              ))}
+            </div>
+        }
+
       </div>
 
       {/* <div className='mr-2 hidden md:block'>

@@ -6,10 +6,13 @@ import {
 
 import NavCard from '../components/NavCard';
 import { toast } from 'react-toastify';
+import Loadar from '../components/Loadar';
+
 
 export default function LoginPage() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
 
 
   const handleLogin = async () => {
@@ -19,6 +22,7 @@ export default function LoginPage() {
     }
 
     try {
+
       const response = await fetch('http://localhost:4000/api/login', {
         method: 'POST',
         headers: {
@@ -37,6 +41,9 @@ export default function LoginPage() {
     } catch (error) {
       console.log(error)
 
+    }
+    finally{
+      setLoading(false)
     }
 
   }
@@ -83,9 +90,11 @@ export default function LoginPage() {
               </p>
 
 
-              <button className="p-2 bg-blue-500 text-white rounded-lg" onClick={handleLogin} >
+              {
+                loading ? <Loadar/>:
+                <button className="p-2 bg-blue-500 text-white rounded-lg" onClick={handleLogin} >
                 Sign In
-              </button>
+              </button>}
 
               <h3 className="text-center">Or</h3>
               <div className="flex justify-center gap-4">

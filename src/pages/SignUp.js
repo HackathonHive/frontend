@@ -7,12 +7,15 @@ import {
 import NavCard from '../components/NavCard';
 import ProfileCard from '../components/ProfileCard';
 import { toast } from 'react-toastify';
+import Loadar from '../components/Loadar';
 
 export default function Signup() {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [role, setRole] = React.useState('')
+  const [loading, setLoading] = React.useState(false)
+
 
   const handleSubmit = async() => {
     console.log(name, email, password,role)
@@ -24,6 +27,7 @@ export default function Signup() {
     console.log(role);
 
     try {
+
       const response = await fetch('http://localhost:4000/api/signup', {
         method: 'POST',
         headers: {
@@ -42,6 +46,10 @@ export default function Signup() {
     } catch (error) {
       console.log(error)
       
+
+    }
+    finally{
+      setLoading(false)
     }
 
   }
@@ -108,9 +116,11 @@ export default function Signup() {
               </p>
 
 
-              <button className="p-2 bg-blue-500 text-white rounded-lg" onClick={handleSubmit}>
+              {
+                loading ? <Loadar/>:
+                <button className="p-2 bg-blue-500 text-white rounded-lg" onClick={handleSubmit}>
                 Sign Up
-              </button>
+              </button>}
 
               <h3 className="text-center">Or</h3>
               <div className="flex justify-center gap-4">
