@@ -19,11 +19,13 @@ import Header from './components/Header';
 import Notes from './pages/Notes';
 import Quiz from './pages/Quiz';
 import CourseDetailPage from './pages/CourseDetailPage';
+import BottemNavigation from './components/BottemNavigation';
 function App() {
   return (
     <>
     <Router>
       <Header />
+      <BottemNavigation />
       <Routes>
         <Route path="/"  element={<HomePage />} />
         <Route path="/login" element={<LoginPage/>}/>

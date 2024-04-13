@@ -29,7 +29,7 @@ export default function HomePage() {
 
       
       <div className='gap-4 w-full col-span-3  mb-5 my-4 shadow-lg mr-5'>
-        <div className='mb-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-2'
+        <div className='mb-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-4'
         style={{
           scrollbarWidth: 'none',
           height:'80vh'

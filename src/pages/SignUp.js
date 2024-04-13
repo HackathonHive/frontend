@@ -88,13 +88,13 @@ export default function Signup() {
                 <option >
                   Select your category
                 </option>
-                <option value="12">
+                <option value="K-12">
                   K-12
                 </option>
-                <option value="Cse">
+                <option value="Computer_Science">
                   Computer Science
                 </option>
-                <option value="Phto_editing">
+                <option value="Photo_Editing">
                   Photo Editing
                 </option>
               </select>

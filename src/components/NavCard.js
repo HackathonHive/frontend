@@ -1,5 +1,5 @@
 import React from 'react'
-import { PlusCircleIcon, HomeIcon, ViewColumnsIcon } from '@heroicons/react/24/solid'
+import { PlusCircleIcon, HomeIcon, ViewColumnsIcon, PencilSquareIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { Link } from 'react-router-dom';
 
 // import { useSelector } from 'react-redux'
@@ -19,9 +19,17 @@ export default function NavCard() {
               </Link>
             </li>
             <li className='flex items-center space-x-2  text-lg hover:text-blue-500'>
-              <PlusCircleIcon className='h-8 w-8' />
+              {/* <PlusCircleIcon className='h-8 w-8' /> */}
+              <PencilSquareIcon className='h-8 w-8' />
               <Link to='/notes'>
                 Notes
+              </Link>
+            </li>
+            <li className='flex items-center space-x-2  text-lg hover:text-blue-500'>
+              {/* <PlusCircleIcon className='h-8 w-8' /> */}
+              <UserCircleIcon className='h-8 w-8' />
+              <Link to='/profile'>
+                Profile
               </Link>
             </li>
           </ul>

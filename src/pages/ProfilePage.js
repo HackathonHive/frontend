@@ -3,7 +3,40 @@ import React from "react";
 import ProfileCard from "../components/ProfileCard";
 import NavCard from "../components/NavCard";
 
+import { useState, useEffect } from 'react';
 export default function ProfilePage() {
+
+  const [user, setUser] = useState([]);
+
+  const fetchUserDetails = async () => {
+    try {
+
+      const res = await fetch('http://localhost:4000/api/userdetails', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      const data = await res.json();
+      setUser(data.user);
+      console.log(data.user);
+
+    } catch (error) {
+      console.log(error);
+
+    }
+  }
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+  }
+
+  useEffect(() => {
+    fetchUserDetails();
+  }, [])
+
   return (
     // <div>ProfilePage</div>
     <>
@@ -22,14 +55,16 @@ export default function ProfilePage() {
           {/* // user profile */}
           <div className="items-center justify-center flex flex-col py-4">
             <img
-              src="/images/Avatar1.jpg"
+              src={user ? '/images/Avatar1.jpg' : '/images/sad-face.png'}
               alt="profile"
               className="rounded-full hover:border-2 border-blue-500"
               width="150"
               height="150"
             />
 
-            <h1 className="text-2xl py-2 font-bold">Ansh Agrawal</h1>
+            <h1 className="text-2xl py-2 font-bold">
+              {user?.name ? user?.name : "You Haven't Logged In"}
+            </h1>
           </div>
           {/* // email address */}
           <div className="flex flex-col justify-center gap-2 items-start space-1 ml-10">
@@ -41,40 +76,25 @@ export default function ProfilePage() {
               type="email"
               className={`border border-gray-300 rounded-lg p-2`}
               placeholder="Email Address"
-              defaultValue={"abcdefgtheiif@hmail.com"}
+              defaultValue={user?.email}
               style={{ width: "90%" }}
               disabled
             />
           </div>
 
           <div className="flex flex-col mt-2  justify-start gap-2 items-start space-1 ml-10">
+            
             <label className=" justify-start align-baseline font-semibold pt-2">
-              Select your category:
+              Role
             </label>
-
-            <div className="flex w-full gap-2" style={{ width: "90%" }}>
-              <select id="fruits" className="border border-gray-300 rounded-lg p-2 w-4/5"
-                style={{ width: "80%" }} defaultValue=""
-              >
-                <option >
-                  Select your category
-                </option>
-                <option value="12 ">
-                  K-12
-                </option>
-                <option value="Computer Science">
-                  Computer Science
-                </option>
-                <option value="Photo Editing">
-                  Photo Editing
-                </option>
-              </select>
-
-              <button className=" bg-gray-100 border border-gray-300 text-black px-4 py-2 rounded-md mt-2 h-12" style={{ width: "20%", height: "100%" }}>
-                Save
-              </button>
-
-            </div>
+            <input
+              type="text"
+              className={`border border-gray-300 rounded-lg p-2`}
+              placeholder="Role"
+              defaultValue={user?.role}
+              style={{ width: "90%" }}
+              disabled
+            />
           </div>
           {/* // logout button */}
           <div className="flex justify-center mt-4">
@@ -87,8 +107,8 @@ export default function ProfilePage() {
         </div>
 
       </div>
-        {/* <div className="mr-2 hidden md:block">search and trending</div>
+      {/* <div className="mr-2 hidden md:block">search and trending</div>
       </div> */}
-      </>
-      );
+    </>
+  );
 }
