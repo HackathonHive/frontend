@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useEffect ,useState} from 'react'
 import ProfileCard from '../components/ProfileCard'
 import NavCard from '../components/NavCard';
 import CourseCard from '../components/CourseCard';
+import { client, builder } from '../api/SanityClient';
 
 export default function HomePage() {
+  const [courses, setCourses] = useState([]);
+
+  const fetchCourses = async () => {
+    const query = '*[_type == "courses"]';
+    const courses = await client.fetch(query);
+    setCourses(courses);
+    console.log(courses);
+  };
+
+  useEffect(() => {
+    fetchCourses();
+  }, []);
+
   return (
     
     <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
@@ -14,17 +28,17 @@ export default function HomePage() {
       </div>
 
       
-      <div className='gap-4 w-full col-span-3  shadow-lg mr-5'>
-        <div className=' h-screen overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-2'
+      <div className='gap-4 w-full col-span-3  mb-5 my-4 shadow-lg mr-5'>
+        <div className='mb-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-2'
         style={{
           scrollbarWidth: 'none',
+          height:'80vh'
         }}
         >
 
-        <CourseCard/>
-        <CourseCard/>
-        <CourseCard/>
-        <CourseCard/>
+          {courses.map((course) => (
+            <CourseCard key={course._id} course={course} />
+          ))}
         </div>
       </div>
 

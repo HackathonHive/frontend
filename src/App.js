@@ -18,6 +18,7 @@ import NavCard from './components/NavCard';
 import Header from './components/Header';
 import Notes from './pages/Notes';
 import Quiz from './pages/Quiz';
+import CourseDetailPage from './pages/CourseDetailPage';
 function App() {
   return (
     <>
@@ -32,6 +33,7 @@ function App() {
       
         <Route path="/navcard" element={<NavCard />}/>
         <Route path="/quiz" element={<Quiz />}/>
+        <Route path="/course/:courseId" element={<CourseDetailPage />} />
 
       </Routes>
     </Router>

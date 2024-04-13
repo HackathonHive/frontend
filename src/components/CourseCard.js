@@ -1,20 +1,27 @@
 import React from 'react'
+import { builder } from '../api/SanityClient';
+import { Link } from 'react-router-dom';
 
-export default function CourseCard() {
+export default function CourseCard({course }) {
     return (
         // make scrollable
 
 
             <div className="max-w-sm  overflow-hidden shadow-lg rounded-lg">
-                <img className="w-full" src="https://cwh-full-next-space.fra1.cdn.digitaloceanspaces.com/videoseries/ultimate-js-tutorial-hindi-1/JS-Thumb.jpg" alt="Course" />
+                <img className="w-full bg-cover" 
+                src={builder.image(course.image).width(300).height(200).url()}
+                
+                 alt="Course" />
                 <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">Course Title</div>
-                    <p className="text-gray-700 text-base">Course Description</p>
+                    <div className="font-bold text-xl mb-2">
+                        {course.title}
+                    </div>
+                    <p className="text-gray-700 text-base">
+                        {course.description}
+                    </p>
                 </div>
                 <div className="px-6 py-4">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Enroll Now
-                    </button>
+                    <Link to={`/course/${course.slug.current}`} className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">View Course</Link>
                 </div>
             </div>
 
