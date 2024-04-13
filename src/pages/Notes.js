@@ -22,7 +22,7 @@ export default function Notes() {
           className="w-full mx-auto border-4 shadow-lg"
           rows={5}
         ></textarea>
-        <div className="flexgap-2 justify-center mt-4">
+        <div className="flex-col gap-2 justify-center mt-4">
           <Link to="/login" className="bg-blue-500 text-white p-2 rounded-lg">
             Add note
           </Link>
