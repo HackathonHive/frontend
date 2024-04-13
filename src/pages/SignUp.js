@@ -29,7 +29,7 @@ export default function Signup() {
 
     try {
 
-      const response = await fetch('http://localhost:4000/api/signup', {
+      const response = await fetch('https://backend-1ndv.onrender.com/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

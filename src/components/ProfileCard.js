@@ -8,7 +8,7 @@ export default function ProfileCard() {
     const fetchUserDetails = async () => {
         try {
 
-            const res = await fetch('http://localhost:4000/api/userdetails', {
+            const res = await fetch('https://backend-1ndv.onrender.com/api/userdetails', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

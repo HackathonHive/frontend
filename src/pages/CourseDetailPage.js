@@ -32,7 +32,7 @@ export default function CourseDetailPage() {
         }
 
         try {
-            const res = await fetch('http://localhost:4000/api/addcomment', {
+            const res = await fetch('https://backend-1ndv.onrender.com/api/addcomment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function CourseDetailPage() {
 
     const fetchQuestions = async () => {
         try {
-            const res = await fetch(`http://localhost:4000/api/comments?slug=${courseId}`, {
+            const res = await fetch(`https://backend-1ndv.onrender.com/api/comments?slug=${courseId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ export default function CourseDetailPage() {
         }
 
         try {
-            const res = await fetch('http://localhost:4000/api/addnote', {
+            const res = await fetch('https://backend-1ndv.onrender.com/api/addnote', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export default function CourseDetailPage() {
 
     const fetchNotes = async () => {
         try {
-            const res = await fetch('http://localhost:4000/api/notes', {
+            const res = await fetch('https://backend-1ndv.onrender.com/api/notes', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
