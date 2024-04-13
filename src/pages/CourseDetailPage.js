@@ -10,6 +10,63 @@ export default function CourseDetailPage() {
     const [course, setCourse] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [activeTab, setActiveTab] = React.useState(1);
+    const [question, setQuestion] = React.useState('');
+    const [questions, setQuestions] = React.useState([]);
+
+    const handleSubmitQuestion = async () => {
+        if (!question) {
+            alert('Please ask a question');
+            return;
+        }
+
+        try {
+            const res = await fetch('http://localhost:4000/api/addcomment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ comment:question, slug:courseId }),
+
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                console.log(data);
+            }
+
+        } catch (error) {
+            console.log(error);
+
+        }
+        finally {
+            fetchQuestions();
+            setQuestion('');
+        }
+    }
+
+    const fetchQuestions = async () => {
+        try {
+            const res = await fetch(`http://localhost:4000/api/comments?slug=${courseId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const data = await res.json();
+            setQuestions(data.comments);
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+                
+                
+                
 
     const fetchCourseDetail = async () => {
         const query = `*[_type == "courses" && slug.current == "${courseId}"]{
@@ -26,6 +83,7 @@ export default function CourseDetailPage() {
 
     React.useEffect(() => {
         fetchCourseDetail();
+        fetchQuestions();
     }, [courseId]);
 
 
@@ -102,17 +160,29 @@ export default function CourseDetailPage() {
                         <div className='p-4'>
                             <h1 className='text-2xl font-bold'>Q&A</h1>
                             <div className='flex flex-row justify-start items-center p-4 gap-4'>
-                                <input type='text' className='p-2 w-3/4 border-2 border-gray-300 rounded-lg' placeholder='Ask a question' />
-                                <button className='p-2 bg-blue-500 text-white rounded-lg'>Ask</button>
+                                <input type='text' className='p-2 w-3/4 border-2 border-gray-300 rounded-lg' placeholder='Ask a question'
+                                    value={question}
+                                    onChange={(e) => setQuestion(e.target.value)}
+                                 />
+                                <button className='p-2 bg-blue-500 text-white rounded-lg'
+                                    onClick={handleSubmitQuestion}
+                                >Ask</button>
                             </div>
                             <div className='p-4'>
-                                <div className='flex flex-row justify-start items-center gap-4'>
-                                    <img src='/images/Avatar1.jpg' alt='profile' className='w-12 h-12 rounded-full' />
-                                    <div>
-                                        <h1 className='text-lg font-bold'>John Doe</h1>
-                                        <p className='text-sm text-gray-500'>How do I get started with this course?</p>
-                                    </div>
-                                </div>
+                                {
+                                    questions.map((q, i) => (
+                                        <div key={i} className='p-4 w-3/4 shadow rounded-lg mb-4'>
+                                            <div className='flex flex-row justify-start items-center gap-4'>
+                                                <img src='/images/Avatar1.jpg' alt='profile' className='w-12 h-12 rounded-full' />
+                                                <div>
+                                                    <h1 className='text-lg font-bold'>John Doe</h1>
+                                                    <p className='text-sm text-gray-500'>{q.comment}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+
+                                }
                             </div>
                         </div>
 
