@@ -27,6 +27,7 @@ export default function LoginPage() {
       const data = await response.json()
       // console.log(data)
       localStorage.setItem('token', data.token)
+      alert('Login Successful')
 
     } catch (error) {
       console.log(error)

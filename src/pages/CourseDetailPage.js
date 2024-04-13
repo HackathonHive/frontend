@@ -9,9 +9,72 @@ export default function CourseDetailPage() {
     const { courseId } = useParams();
     const [course, setCourse] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
+    const [activeTab, setActiveTab] = React.useState(1);
+    const [question, setQuestion] = React.useState('');
+    const [questions, setQuestions] = React.useState([]);
+
+    const handleSubmitQuestion = async () => {
+        if (!question) {
+            alert('Please ask a question');
+            return;
+        }
+
+        try {
+            const res = await fetch('http://localhost:4000/api/addcomment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+                body: JSON.stringify({ comment:question, slug:courseId }),
+
+            });
+            const data = await res.json();
+            console.log(data);
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                console.log(data);
+            }
+
+        } catch (error) {
+            console.log(error);
+
+        }
+        finally {
+            fetchQuestions();
+            setQuestion('');
+        }
+    }
+
+    const fetchQuestions = async () => {
+        try {
+            const res = await fetch(`http://localhost:4000/api/comments?slug=${courseId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            const data = await res.json();
+            setQuestions(data.comments);
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+                
+                
+                
 
     const fetchCourseDetail = async () => {
-        const query = `*[_type == "courses" && slug.current == "${courseId}"]`;
+        const query = `*[_type == "courses" && slug.current == "${courseId}"]{
+            title,
+            content,
+            url,
+            "notes": notes.asset->url
+        }`;
         const course = await client.fetch(query);
         console.log(course);
         setCourse(course[0]);
@@ -20,6 +83,7 @@ export default function CourseDetailPage() {
 
     React.useEffect(() => {
         fetchCourseDetail();
+        fetchQuestions();
     }, [courseId]);
 
 
@@ -48,7 +112,28 @@ export default function CourseDetailPage() {
 
                         } title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                     </div>
-                    <div className='p-4'>
+                    
+                    <div className='flex flex-row justify-start items-center p-4 gap-4'>
+                        <button onClick={
+                            ()=>setActiveTab(1)
+                        } className={`p-2 text-lg font-bold ${activeTab === 1 ? 'text-blue-500' : 'text-gray-500'}`}>Overview</button>
+                        <button onClick={
+                            ()=>setActiveTab(2)
+                        } className={`p-2 text-lg font-bold ${activeTab === 2 ? 'text-blue-500' : 'text-gray-500'}`}>Q&A</button>
+                        <button onClick={
+                            ()=>setActiveTab(3)
+                        } className={`p-2 text-lg font-bold ${activeTab === 3 ? 'text-blue-500' : 'text-gray-500'}`}>Download</button>
+                        {/* <button onClick={
+                            ()=>setActiveTab(4)
+                        } className={`p-2 text-lg font-bold ${activeTab === 4 ? 'text-blue-500' : 'text-gray-500'}`}>
+
+                        </button> */}
+
+                    </div>
+
+                    {
+                        activeTab === 1 &&
+                        <div className='p-4'>
                         <h1 className='text-2xl font-bold'>{course && course.title}</h1>
                         <PortableText
                             content={course && course.content}
@@ -68,7 +153,51 @@ export default function CourseDetailPage() {
                             }}
                         />
 
-                    </div>
+                    </div>}
+
+                    {
+                        activeTab === 2 &&
+                        <div className='p-4'>
+                            <h1 className='text-2xl font-bold'>Q&A</h1>
+                            <div className='flex flex-row justify-start items-center p-4 gap-4'>
+                                <input type='text' className='p-2 w-3/4 border-2 border-gray-300 rounded-lg' placeholder='Ask a question'
+                                    value={question}
+                                    onChange={(e) => setQuestion(e.target.value)}
+                                 />
+                                <button className='p-2 bg-blue-500 text-white rounded-lg'
+                                    onClick={handleSubmitQuestion}
+                                >Ask</button>
+                            </div>
+                            <div className='p-4'>
+                                {
+                                    questions.map((q, i) => (
+                                        <div key={i} className='p-4 w-3/4 shadow rounded-lg mb-4'>
+                                            <div className='flex flex-row justify-start items-center gap-4'>
+                                                <img src='/images/Avatar1.jpg' alt='profile' className='w-12 h-12 rounded-full' />
+                                                <div>
+                                                    <h1 className='text-lg font-bold'>John Doe</h1>
+                                                    <p className='text-sm text-gray-500'>{q.comment}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))
+
+                                }
+                            </div>
+                        </div>
+
+                    }
+
+                    {
+                        activeTab === 3 &&
+                        <div className='p-4'>
+                            <h1 className='text-2xl font-bold'>Download</h1>
+                            <div className='flex flex-row justify-start items-center gap-4'>
+                                <a target='_blank' href={`${course.notes}?dl=`}  className='p-2 bg-blue-500 text-white rounded-lg' rel="noreferrer">Download Notes</a>
+                            </div>
+                        </div>
+                    }
+
                 </div>
 
 
