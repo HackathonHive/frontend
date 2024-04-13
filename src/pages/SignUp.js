@@ -8,13 +8,14 @@ import NavCard from '../components/NavCard';
 import ProfileCard from '../components/ProfileCard';
 import { toast } from 'react-toastify';
 import Loadar from '../components/Loadar';
-
+import { useNavigate } from 'react-router-dom';
 export default function Signup() {
   const [name, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [role, setRole] = React.useState('')
   const [loading, setLoading] = React.useState(false)
+  const navigate = useNavigate();
 
 
   const handleSubmit = async() => {
@@ -42,6 +43,11 @@ export default function Signup() {
       })
       const data = await response.json()
       // console.log(data)
+      if(data){
+        localStorage.setItem('role', role)
+        toast.success('Signup successfull')
+        navigate('/login')
+      }
       
     } catch (error) {
       console.log(error)
@@ -54,12 +60,6 @@ export default function Signup() {
 
   }
   return (
-    <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
-    <div className='hidden md:block gap-4 col-span-1'>
-      {/* profile and nav */}
-      <ProfileCard />
-      <NavCard />
-    </div>
 
 
 
@@ -97,13 +97,13 @@ export default function Signup() {
                 <option >
                   Select your category
                 </option>
-                <option value="K-12">
+                <option value="K12">
                   K-12
                 </option>
-                <option value="Computer_Science">
+                <option value="cse">
                   Computer Science
                 </option>
-                <option value="Photo_Editing">
+                <option value="photography">
                   Photo Editing
                 </option>
               </select>
@@ -136,12 +136,5 @@ export default function Signup() {
 
         </div>
       
-
-
-      {/* <div className='mr-2 hidden md:block'>
-
-        search and trending
-      </div> */}
-    </div>
   )
 }

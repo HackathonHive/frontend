@@ -7,9 +7,11 @@ import {
 import NavCard from '../components/NavCard';
 import { toast } from 'react-toastify';
 import Loadar from '../components/Loadar';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [loading, setLoading] = React.useState(false)
@@ -35,8 +37,12 @@ export default function LoginPage() {
       })
       const data = await response.json()
       // console.log(data)
+      if(data){
       localStorage.setItem('token', data.token)
-      alert('Login Successful')
+      toast.success('Login successfull')
+      navigate('/')
+
+      }
 
     } catch (error) {
       console.log(error)
@@ -48,14 +54,6 @@ export default function LoginPage() {
 
   }
   return (
-
-    <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
-      <div className='hidden md:block gap-4 col-span-1'>
-        {/* profile and nav */}
-        <ProfileCard />
-        <NavCard />
-
-      </div>
 
 
       <div className='gap-4 w-full col-span-3 h-full shadow-lg mr-5'>
@@ -110,12 +108,6 @@ export default function LoginPage() {
 
         </div>
       </div>
-
-      {/* <div className='mr-2 hidden md:block'>
-
-        search and trending
-      </div> */}
-    </div>
 
   )
 }

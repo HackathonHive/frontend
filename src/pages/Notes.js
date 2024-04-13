@@ -75,14 +75,6 @@ export default function Notes() {
   const [title, setTitle] = useState("");
   return (
     <>
-      <div
-        className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `}
-        style={{ height: "100%" }}
-      >
-        <div className="hidden md:block gap-4 col-span-1">
-          <ProfileCard />
-          <NavCard />
-        </div>
         <div className="mx-auto w-full px-24 flex-col justify-center align-middle gap-4 col-span-3 h-full shadow-lg mr-5">
           <div className="w-full mb-8">
             <h3>Type Your Notes : </h3>
@@ -125,7 +117,7 @@ export default function Notes() {
           </div>
 
         </div>
-      </div>
+      
     </>
   );
 }

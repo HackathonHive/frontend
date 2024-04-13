@@ -17,7 +17,11 @@ export default function HomePage() {
       navigate('/login');
       return;
     }
-    const query = '*[_type == "courses"]';
+    // filter by category where category is web development
+    // const query = `*[_type == "courses" && category == "web development"] `;
+
+    let category = localStorage.getItem('role');
+    const query = `*[_type == "courses" && category =="${category}"]`;
     const courses = await client.fetch(query);
     setCourses(courses);
     setLoading(false);
@@ -30,19 +34,22 @@ export default function HomePage() {
 
   return (
 
-    <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
-      <div className='hidden md:block gap-4 col-span-1'>
-        {/* profile and nav */}
-        <ProfileCard />
-        <NavCard />
-      </div>
+
+    <div className='gap-4 w-full col-span-3  mb-5 my-4 shadow-lg mr-5'>
+
+      {
+        loading ? <Loadar /> :
+          <>
+
+            <h2 className='text-3xl font-bold text-gray-800 p-y-4 text-center'>
+              Recommend Courses
+            </h2>
+            {/* // seach bar */}
+          
 
 
-      <div className='gap-4 w-full col-span-3  mb-5 my-4 shadow-lg mr-5'>
 
-        {
-          loading ? <Loadar /> :
-            <div className='mb-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-4'
+            <div className='my-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-4'
               style={{
                 scrollbarWidth: 'none',
                 height: '80vh'
@@ -53,14 +60,11 @@ export default function HomePage() {
                 <CourseCard key={course._id} course={course} />
               ))}
             </div>
-        }
+          </>
 
-      </div>
+      }
 
-      {/* <div className='mr-2 hidden md:block'>
-
-        search and trending 
-      </div> */}
     </div>
+
   )
 }

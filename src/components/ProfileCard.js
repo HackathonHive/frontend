@@ -39,7 +39,7 @@ export default function ProfileCard() {
         <div className='p-2'>
             <div className={`shadow-lg p-4  rounded-lg`}>
                 <div className='flex justify-center'>
-                    <Link to='/login'>
+                    <Link to={user ? '/profile' : '/login'}>
                         <img
                             src={user ? '/images/Avatar1.jpg' : '/images/sad-face.png'}
                             alt='profile' className='rounded-full cursor-pointer border-4 border-blue-500 shadow-lg hover:border-2' width='100' height='100' />

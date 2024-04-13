@@ -225,10 +225,6 @@ export default function CourseDetailPage() {
 
             </div>
 
-            {/* <div className='mr-2 hidden md:block'>
-
-      search and trending 
-    </div> */}
         </div>
     )
 }
