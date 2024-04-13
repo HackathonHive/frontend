@@ -28,6 +28,7 @@ export default function Signup() {
     console.log(role);
 
     try {
+      setLoading(true)
 
       const response = await fetch('https://backend-1ndv.onrender.com/api/signup', {
         method: 'POST',

@@ -24,7 +24,7 @@ export default function LoginPage() {
     }
 
     try {
-
+      setLoading(true)
       const response = await fetch('https://backend-1ndv.onrender.com/api/login', {
         method: 'POST',
         headers: {
