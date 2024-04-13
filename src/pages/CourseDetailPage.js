@@ -92,10 +92,11 @@ export default function CourseDetailPage() {
             title,
             content,
             url,
-            "notes": notes.asset->url
+            "notes": notes.asset->url,
+            mcq
         }`;
         const course = await client.fetch(query);
-        // console.log(course);
+        console.log(course[0].mcq);
         setCourse(course[0]);
         setLoading(false);
     }
@@ -123,11 +124,11 @@ export default function CourseDetailPage() {
 
             });
             const data = await res.json();
-            console.log(data);
+            // console.log(data);
             if (data.error) {
                 console.log(data.error);
             } else {
-                console.log(data);
+                // console.log(data);
             }
 
         } catch (error) {
@@ -151,10 +152,23 @@ export default function CourseDetailPage() {
             });
             const data = await res.json();
             setNotes(data.notes);
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const showResult = () => {
+        let score = 0;
+        course.mcq.forEach((q, i) => {
+            const selected = document.querySelector(`input[name=q${i}]:checked`);
+            if (selected) {
+                if (selected.id === `q${i}o${q.answer}`) {
+                    score++;
+                }
+            }
+        });
+        alert(`You scored ${score}/${course.mcq.length}`);
     }
 
     React.useEffect(() => {
@@ -206,6 +220,11 @@ export default function CourseDetailPage() {
                             () => setActiveTab(4)
                         } className={`p-2 text-lg font-bold ${activeTab === 4 ? 'text-blue-500' : 'text-gray-500'}`}>
                             Write Notes
+                        </button>
+                        <button onClick={
+                            () => setActiveTab(5)
+                        } className={`p-2 text-lg font-bold ${activeTab === 5 ? 'text-blue-500' : 'text-gray-500'}`}>
+                            Quiz
                         </button>
 
                     </div>
@@ -301,6 +320,37 @@ export default function CourseDetailPage() {
                                     ))
 
                                 }
+                            </div>
+
+                        </div>
+                    }
+
+                    {
+                        activeTab === 5 &&
+                        <div className='p-4'>
+                            <h1 className='text-2xl font-bold'>Quiz</h1>
+                            <div className='flex flex-col justify-start items-center gap-4'>
+                                {
+                                    course && course.mcq.map((q, i) => (
+                                        <div key={i} className='p-4 w-full shadow rounded-lg mb-4'>
+                                            <h1 className='text-lg font-bold'>{q.question}</h1>
+                                            <div className='flex  flex-col  justify-start items-center gap-4'>
+                                                {
+                                                    q.options.map((o, j) => (
+                                                        <div key={j} className='p-4 w-3/4 shadow rounded-lg mb-4 '>
+                                                            <input type='radio' name={`q${i}`} id={`q${i}o${j}`} />
+                                                            <label htmlFor={`q${i}o${j}`}>{o}</label>
+                                                        </div>
+                                                    ))
+                                                }
+                                            </div>
+                                        </div>
+                                    ))
+
+                                }
+                                <button className='p-2 bg-blue-500 text-white rounded-lg'
+                                onClick={showResult}
+                                >Submit</button>
                             </div>
 
                         </div>
