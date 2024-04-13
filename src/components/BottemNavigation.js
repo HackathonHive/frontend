@@ -6,7 +6,7 @@ export default function BottemNavigation() {
     const navigate = useNavigate();
   return (
     <div>
-         <div className={`md:hidden sm:block fixed bottom-0 left-0 z-50 w-full h-16 border-t border-gray-200 `}>
+         <div className={`md:hidden sm:block fixed bottom-0 left-0 z-50 w-full h-16 border-t bg-white border-gray-200 `}>
             <div className={`grid h-full max-w-lg grid-cols-4 mx-auto font-medium  `}>
                 <button type="button" className={`inline-flex flex-col items-center justify-center px-5  group`}
                 onClick={()=>{

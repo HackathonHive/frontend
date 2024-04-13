@@ -55,7 +55,7 @@ export default function ProfileCard() {
                         {
                             user?.name &&
 
-                            <button onClick={logout} className='bg-red-500 text-white p-2 rounded-lg'>
+                            <button onClick={logout} className='bg-blue-500 text-white p-2 rounded-lg'>
                                 Logout
                             </button>
                         }

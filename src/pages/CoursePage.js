@@ -50,7 +50,7 @@ export default function CoursePage() {
                         <div className='my-4  overflow-y-auto overflow-x-hidden p-4 flex flex-wrap gap-4'
                             style={{
                                 scrollbarWidth: 'none',
-                                height: '80vh'
+                                height: '70vh'
                             }}
                         >
 
