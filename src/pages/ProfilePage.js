@@ -6,6 +6,7 @@ import NavCard from "../components/NavCard";
 import { useState, useEffect } from 'react';
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function ProfilePage() {
 
   const [user, setUser] = useState([]);
@@ -14,7 +15,7 @@ export default function ProfilePage() {
   const fetchUserDetails = async () => {
 
     if (!localStorage.getItem('token')) {
-      alert('Please login to view profile');
+      toast.error('Please login to view profile');
       navigate('/login');
       return;
     }

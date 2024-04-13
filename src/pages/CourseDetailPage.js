@@ -5,6 +5,7 @@ import ProfileCard from '../components/ProfileCard'
 import NavCard from '../components/NavCard';
 import PortableText from 'react-portable-text';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export default function CourseDetailPage() {
     const { courseId } = useParams();
@@ -18,7 +19,8 @@ export default function CourseDetailPage() {
     const handleSubmitQuestion = async () => {
 
         if(!localStorage.getItem('token')){
-            alert('Please login to ask a question');
+            toast.error('Please login to ask a question');
+            navigate('/login');
             return;
         }
 
@@ -79,7 +81,7 @@ export default function CourseDetailPage() {
     const fetchCourseDetail = async () => {
 
         if(!localStorage.getItem('token')){
-            alert('Please login to view course details');
+            toast.error('Please login to view course details');
             navigate('/login');
             return;
         }

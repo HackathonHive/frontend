@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 
 import NavCard from '../components/NavCard';
+import { toast } from 'react-toastify';
 
 export default function LoginPage() {
   const [email, setEmail] = React.useState('')
@@ -12,6 +13,10 @@ export default function LoginPage() {
 
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      toast.error('Please fill all the fields')
+      return
+    }
 
     try {
       const response = await fetch('http://localhost:4000/api/login', {

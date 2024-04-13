@@ -6,19 +6,20 @@ import NavCard from "../components/NavCard";
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export default function Notes() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
 
     if (!localStorage.getItem('token')) {
-      alert('Please login to save notes');
+      toast.error('Please login to save notes');
       navigate('/login');
       return;
     }
 
     if (!note || !title) {
-      alert('Please fill in all fields');
+      toast.warning('Please fill all fields');
       
 
       return;

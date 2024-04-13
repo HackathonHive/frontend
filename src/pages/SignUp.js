@@ -6,6 +6,7 @@ import {
 
 import NavCard from '../components/NavCard';
 import ProfileCard from '../components/ProfileCard';
+import { toast } from 'react-toastify';
 
 export default function Signup() {
   const [name, setName] = React.useState('')
@@ -17,7 +18,7 @@ export default function Signup() {
     console.log(name, email, password,role)
 
     if(!name || !email || !password || !role){
-      console.log('Please fill all the fields')
+      toast.error('Please fill all the fields')
       return
     }
     console.log(role);

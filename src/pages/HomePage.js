@@ -4,13 +4,14 @@ import NavCard from '../components/NavCard';
 import CourseCard from '../components/CourseCard';
 import { client, builder } from '../api/SanityClient';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 export default function HomePage() {
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
   const fetchCourses = async () => {
     if (!localStorage.getItem('token')) {
-      alert('Please login to view courses');
+      toast.error('Please login to view courses');
       navigate('/login');
       return;
     }

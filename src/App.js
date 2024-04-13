@@ -20,6 +20,9 @@ import Notes from './pages/Notes';
 import Quiz from './pages/Quiz';
 import CourseDetailPage from './pages/CourseDetailPage';
 import BottemNavigation from './components/BottemNavigation';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
@@ -38,6 +41,7 @@ function App() {
         <Route path="/course/:courseId" element={<CourseDetailPage />} />
 
       </Routes>
+      <ToastContainer />
     </Router>
     </>
 
