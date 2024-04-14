@@ -32,7 +32,7 @@ export default function CourseDetailPage() {
         }
 
         try {
-            const res = await fetch('https://backend-1ndv.onrender.com/api/addcomment', {
+            const res = await fetch('http://localhost:4000/api/addcomment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function CourseDetailPage() {
 
     const fetchQuestions = async () => {
         try {
-            const res = await fetch(`https://backend-1ndv.onrender.com/api/comments?slug=${courseId}`, {
+            const res = await fetch(`http://localhost:4000/api/comments?slug=${courseId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -114,7 +114,7 @@ export default function CourseDetailPage() {
         }
 
         try {
-            const res = await fetch('https://backend-1ndv.onrender.com/api/addnote', {
+            const res = await fetch('http://localhost:4000/api/addnote', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export default function CourseDetailPage() {
 
     const fetchNotes = async () => {
         try {
-            const res = await fetch('https://backend-1ndv.onrender.com/api/notes', {
+            const res = await fetch('http://localhost:4000/api/notes', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -182,12 +182,7 @@ export default function CourseDetailPage() {
 
     return (
 
-        !loading && <div className={`grid-cols-1 grid md:grid-cols-4 gap-8 m-0 h-full p-4  fixed w-full `} style={{ height: '100%' }}>
-            <div className='hidden md:block gap-4 col-span-1'>
-                {/* profile and nav */}
-                <ProfileCard />
-                <NavCard />
-            </div>
+        !loading && 
 
 
             <div className='gap-4 w-full col-span-3  mb-5 my-4 shadow-lg mr-5'>
@@ -365,6 +360,5 @@ export default function CourseDetailPage() {
 
             </div>
 
-        </div>
     )
 }
