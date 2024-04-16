@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ProfileCard from './components/ProfileCard';
 import 'react-toastify/dist/ReactToastify.css';
 import CoursePage from './pages/CoursePage';
+import AIPage from './pages/AIPage';
 function App() {
   return (
     <>
@@ -43,6 +44,7 @@ function App() {
         <Route path="/navcard" element={<NavCard />}/>
         <Route path="/quiz" element={<Quiz />}/>
         <Route path="/course/:courseId" element={<CourseDetailPage />} />
+        <Route path="/ai" element={<AIPage />} />
 
       </Routes>
       <ToastContainer />
