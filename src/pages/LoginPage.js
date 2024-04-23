@@ -18,6 +18,7 @@ export default function LoginPage() {
 
 
   const handleLogin = async () => {
+    console.log(process.env.REACT_APP_API_URL);
     if (!email || !password) {
       toast.error('Please fill all the fields')
       return
@@ -25,7 +26,7 @@ export default function LoginPage() {
 
     try {
       setLoading(true)
-      const response = await fetch('http://localhost:4000/api/login', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -40,7 +41,7 @@ export default function LoginPage() {
       if(data){
       localStorage.setItem('token', data.token)
       toast.success('Login successfull')
-      navigate('/')
+      window.location.href = '/'
 
       }
 

@@ -16,13 +16,13 @@ export default function ProfilePage() {
 
     if (!localStorage.getItem('token')) {
       toast.error('Please login to view profile');
-      navigate('/login');
+      window.location.href = '/login';
       return;
     }
 
     try {
 
-      const res = await fetch('http://localhost:4000/api/userdetails', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/userdetails`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

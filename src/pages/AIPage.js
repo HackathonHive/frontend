@@ -1,6 +1,7 @@
 import { MicrophoneIcon, PaperAirplaneIcon } from '@heroicons/react/24/solid';
-import React from 'react';
+import React, { useEffect } from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { apiCall } from '../api/openAI';
 
 const AIPage = () => {
   const {
@@ -13,6 +14,13 @@ const AIPage = () => {
   if (!browserSupportsSpeechRecognition) {
     return <span>Browser doesn't support speech recognition.</span>;
   }
+
+  const handleSendMessage = async () => {
+    const response=await apiCall(transcript,[]);
+    console.log('response',response);
+  };
+
+
 
   return (
     <div className=' w-full gap-4 col-span-3 h-screen  shadow-lg mr-5'>
@@ -28,7 +36,9 @@ const AIPage = () => {
           onChange={(e) => resetTranscript(e.target.value)}
         />
         <MicrophoneIcon className="h-8 w-8 text-blue-500 cursor-pointer" onClick={SpeechRecognition.startListening} />
-        <PaperAirplaneIcon className="h-8 w-8 text-blue-500 cursor-pointer" />
+        <PaperAirplaneIcon className="h-8 w-8 text-blue-500 cursor-pointer" 
+        onClick={handleSendMessage}
+        />
       </div>
       <div
         className='overflow-y-auto overflow-x-hidden'

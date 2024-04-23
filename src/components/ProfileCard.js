@@ -8,7 +8,7 @@ export default function ProfileCard() {
     const fetchUserDetails = async () => {
         try {
 
-            const res = await fetch('http://localhost:4000/api/userdetails', {
+            const res = await fetch(`${process.env.REACT_APP_API_URL}/api/userdetails`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export default function ProfileCard() {
                 </div>
                 <div className='text-center'>
                     <h1 className='text-xl font-bold'>
-                        {user?.name? user.name : 'You Haven\'t Logged In'}
+                        {user?.name ? user.name : 'You Haven\'t Logged In'}
 
                     </h1>
 
@@ -59,7 +59,7 @@ export default function ProfileCard() {
                                 Logout
                             </button>
                         }
-                        {!user && <Link to='/login'  className='bg-blue-500 text-white p-2 rounded-lg'>
+                        {!user && <Link to='/login' className='bg-blue-500 text-white p-2 rounded-lg'>
                             Login
                         </Link>}
 

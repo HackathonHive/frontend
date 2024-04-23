@@ -26,7 +26,7 @@ export default function Notes() {
     }
 
     try {
-      const res = await fetch('http://localhost:4000/api/addnote', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/addnote`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export default function Notes() {
   }
   const fetchNotes = async () => {
     try {
-      const res = await fetch('http://localhost:4000/api/notes', {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/api/notes`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }

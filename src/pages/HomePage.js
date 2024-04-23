@@ -23,7 +23,8 @@ export default function HomePage() {
     // const query = `*[_type == "courses" && category == "web development"] `;
 
 
-    let category = localStorage.getItem('role');
+    let category = localStorage.getItem('role').toLowerCase();
+    // console.log(category);
     const query = `*[_type == "courses" && category =="${category}"]`;
     const courses = await client.fetch(query);
     setCourses(courses);
