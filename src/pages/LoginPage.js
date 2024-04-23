@@ -40,6 +40,7 @@ export default function LoginPage() {
       // console.log(data)
       if(data){
       localStorage.setItem('token', data.token)
+      localStorage.setItem('role', data.role)
       toast.success('Login successfull')
       window.location.href = '/'
 
